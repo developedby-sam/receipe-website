@@ -1,0 +1,159 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #1e293b;
+}
+
+a {
+  text-decoration: none;
+  color: #1e293b;
+}
+
+a:hover {
+  color: #06b6d4;
+}
+
+/* Nav Styles */
+.navigation {
+  background-color: #e2e8f0;
+  height: 10vh;
+  padding: 0 5%;
+  display: flex;
+}
+
+.logo-container {
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-container {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-icon {
+  width: 20px;
+  position: absolute;
+  left: 0.5rem;
+}
+
+.search-bar-container input {
+  width: 100%;
+  border: none;
+  background-color: #f1f5f9;
+  padding: 1.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.search-bar-container input:focus {
+  outline: none;
+}
+
+.nav-links {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-links .link {
+  font-size: 1.45rem;
+}
+
+.nav-links .link:not(:last-child) {
+  margin: 0 15px;
+}
+
+/* Card Style */
+.receipe-container {
+  padding: 0 5%;
+  margin: 5rem 0;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 380px;
+  row-gap: 8rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 380px;
+  height: 450px;
+  background: #f3f4f6;
+  border-radius: 3px;
+  position: relative;
+}
+.card .bg {
+  width: 100%;
+  height: 60%;
+  background-image: url("https://images.pexels.com/photos/5409010/pexels-photo-5409010.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.article-type {
+  margin-top: 1rem;
+  text-transform: uppercase;
+  color: #65a30d;
+  font-weight: 600;
+  padding-left: 1.5rem;
+}
+
+.recipe-name {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.recipe-explanation {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #64748b;
+}
+
+.details {
+  padding: 0 1.5rem;
+  margin-top: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 2rem;
+}
+
+.details p:not(:first-child) {
+  margin: 0 10px;
+}
+
+.details .rating {
+  font-weight: 600;
+  color: #65a30d;
+}
+
+.green {
+  color: #65a30d;
+}
+
+.details p:not(:first-child) {
+  font-size: 1.4rem;
+}
