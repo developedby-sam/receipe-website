@@ -157,3 +157,25 @@ a:hover {
 .details p:not(:first-child) {
   font-size: 1.4rem;
 }
+
+footer {
+  background-color: #f1f5f9;
+  height: 10vh;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  width: 30%;
+}
+
+.terms-details {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.terms-details a:not(:last-child) {
+  margin: 0 15px;
+}
