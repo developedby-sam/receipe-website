@@ -57,7 +57,7 @@ a:hover {
   width: 100%;
   border: none;
   background-color: #f1f5f9;
-  padding: 1.2rem 0.5rem;
+  padding: 1.2rem 3rem;
   border-radius: 3px;
 }
 
@@ -95,16 +95,17 @@ a:hover {
 }
 
 .card {
-  width: 380px;
-  height: 450px;
+  width: 400px;
+  height: 100%;
   background: #f3f4f6;
   border-radius: 3px;
   position: relative;
+  overflow: hidden;
 }
+
 .card .bg {
   width: 100%;
-  height: 60%;
-  background-image: url("https://images.pexels.com/photos/5409010/pexels-photo-5409010.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  height: 300px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -124,7 +125,7 @@ a:hover {
 }
 
 .recipe-explanation {
-  padding-left: 1.5rem;
+  padding: 0 1.5rem;
   margin-top: 1rem;
   font-size: 1.4rem;
   color: #64748b;
