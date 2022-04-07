@@ -19,10 +19,16 @@ const clearPreviousCard = () => {
 const createCardElement = (cardData) => {
   cardData.forEach((data) => {
     const cardElement = document.createElement("div");
+    console.log(data);
     cardElement.classList.add("card");
     cardElement.innerHTML = `
             <div class="bg" style="background-image: url(${data.image})"></div>
-            <p class="article-type"> RECIPE </p>
+            <div class="external-link-container">
+              <a target="_blank" href="${
+                data.sourceUrl ? data.sourceUrl : data.link
+              }" class="article-type"> RECIPE </a>
+              <button class="btn-fav"> Add to favourite </button>
+            </div>
             <h3 class="recipe-name"> ${
               data.title ? data.title : data.name
             } </h3>
