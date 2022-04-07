@@ -2,9 +2,10 @@ const cardContainer = document.querySelector(".card-container");
 const form = document.querySelector("form");
 const searchBar = document.querySelector("#search-bar");
 
-const FOOD_DATABASE_APP_KEY = "120d8fbb220a451e91c2b70d158fbfa0";
-const FOOD_API = `https://api.spoonacular.com/recipes/random?apiKey=${FOOD_DATABASE_APP_KEY}&number=10`;
+const FOOD_DATABASE_APP_KEY = "11c0f84fd59d4b05892c55b414b7e106";
+const FOOD_API = `https://api.spoonacular.com/recipes/random?apiKey=${FOOD_DATABASE_APP_KEY}&number=100`;
 let searchValue = "";
+const pathname = window.location.pathname;
 
 const fetchApi = async (url) => {
   const dataFetch = await fetch(url);
@@ -16,10 +17,9 @@ const clearPreviousCard = () => {
   cardContainer.innerHTML = "";
 };
 
-const createCardElement = (cardData) => {
+const createCardElement = async (cardData) => {
   cardData.forEach((data) => {
     const cardElement = document.createElement("div");
-    console.log(data);
     cardElement.classList.add("card");
     cardElement.innerHTML = `
             <div class="bg" style="background-image: url(${data.image})"></div>
@@ -27,7 +27,7 @@ const createCardElement = (cardData) => {
               <a target="_blank" href="${
                 data.sourceUrl ? data.sourceUrl : data.link
               }" class="article-type"> RECIPE </a>
-              <button class="btn-fav"> Add to favourite </button>
+              <button class="btn-fav"> Add to favourites </button>
             </div>
             <h3 class="recipe-name"> ${
               data.title ? data.title : data.name
@@ -49,7 +49,6 @@ const searchMeals = async (query) => {
   const SEARCH_FOOD_API = `https://api.spoonacular.com/food/search?apiKey=${FOOD_DATABASE_APP_KEY}&query=${query}&number=100`;
   const results = await fetchApi(SEARCH_FOOD_API);
   const recipeResults = results.searchResults[0].results;
-  console.log(recipeResults);
   clearPreviousCard();
   createCardElement(recipeResults);
 };
@@ -63,4 +62,34 @@ searchBar.addEventListener("input", (event) => {
   searchValue = event.target.value;
 });
 
-displayMeals();
+// Landing page setup
+switch (pathname) {
+  case "/":
+    displayMeals();
+    break;
+  case "/favourite.html":
+    console.log("Fav");
+}
+
+// Implmenting favourite page
+const FAVOURITES = [];
+
+const SetLocalStorage = function (data) {
+  localStorage.setItem("favourites", JSON.stringify(data));
+};
+
+const GetLocalStorage = function () {
+  const favouriteString = localStorage.getItem("favourites");
+  return JSON.parse(favouriteString);
+};
+
+setTimeout(() => {
+  const favBtns = document.getElementsByClassName("btn-fav");
+  [...favBtns].forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      FAVOURITES.push(event.target.parentNode.parentNode);
+      SetLocalStorage(FAVOURITES);
+      console.log(FAVOURITES);
+    });
+  });
+}, 5000);
