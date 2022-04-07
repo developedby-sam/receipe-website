@@ -2,7 +2,7 @@ const cardContainer = document.querySelector(".card-container");
 const form = document.querySelector("form");
 const searchBar = document.querySelector("#search-bar");
 
-const FOOD_DATABASE_APP_KEY = "11c0f84fd59d4b05892c55b414b7e106";
+const FOOD_DATABASE_APP_KEY = "e95d8c8e8c0a458b8582fd6b58fc0339";
 const FOOD_API = `https://api.spoonacular.com/recipes/random?apiKey=${FOOD_DATABASE_APP_KEY}&number=100`;
 let searchValue = "";
 const pathname = window.location.pathname;
@@ -72,24 +72,46 @@ switch (pathname) {
 }
 
 // Implmenting favourite page
-const FAVOURITES = [];
 
-const SetLocalStorage = function (data) {
-  localStorage.setItem("favourites", JSON.stringify(data));
-};
+const saveToLocalStorage = function (data) {
+  let oldLocalData;
 
-const GetLocalStorage = function () {
-  const favouriteString = localStorage.getItem("favourites");
-  return JSON.parse(favouriteString);
+  if (localStorage.getItem("cards") === null) {
+    oldLocalData = [];
+  } else {
+    oldLocalData = JSON.parse(localStorage.getItem("cards"));
+  }
+
+  oldLocalData.push(data);
+  localStorage.setItem("cards", JSON.stringify(oldLocalData));
 };
 
 setTimeout(() => {
   const favBtns = document.getElementsByClassName("btn-fav");
   [...favBtns].forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      FAVOURITES.push(event.target.parentNode.parentNode);
-      SetLocalStorage(FAVOURITES);
-      console.log(FAVOURITES);
+      const targetCard = event.target.parentNode.parentNode;
+
+      // Getting Card Informations
+      const imageUrl = targetCard.firstElementChild.style.backgroundImage;
+
+      const sourceUrl = targetCard.getElementsByClassName(
+        "external-link-container"
+      )[0].firstElementChild.href;
+
+      const title =
+        targetCard.getElementsByClassName("recipe-name")[0].innerText;
+
+      const summary = targetCard.lastElementChild.innerText;
+
+      const cardInfo = {
+        imageUrl,
+        sourceUrl,
+        title,
+        summary,
+      };
+
+      saveToLocalStorage(cardInfo);
     });
   });
 }, 5000);
